@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随机引语生成器</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <style>
+    *{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     list-style: none;
+     vertical-align: baseline;
+    }
+    .container{
+      width: 100%;
+      height: 100vh;
+      font-family: "Raleway", sans-serif;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background-color: rgb(39, 212, 179); */
+    }
+        #quote-box{
+          padding: 40px 50px;
+          border-radius: 3px;
+          display: table;
+          background-color: white;
+        }
+          #quote-text{
+            text-align: center;
+            font-size: 1.75em;
+            font-weight: 500;
+            height: auto;
+            width: 500px;
+            clear: both;
+            /* color: rgb(39, 212, 179); */
+          }
+            #quote-box .quote-text i {
+              font-size: 1em;
+              margin-right: 0.4em;
+            }
+          #quote-author{
+            text-align: right;
+            padding-top: 20px;
+            clear: both;
+            font-size: 1.2em;
+            width: 500px;
+            height: auto;
+            /* color: rgb(39, 212, 179); */
+          }
+          .buttons{
+            width: 500px;
+            margin: auto;
+            display: block;
+          }
+            .buttons #tweet-quote,.buttons #tumblr-quote{
+              float: left;
+              padding: 0px;
+              padding-top: 8px;
+              text-align: center;
+              font-size: 1.2em;
+              margin-right: 5px;
+              height: 35px;
+              width: 45px;
+            }
+            .buttons .button{
+              height: 38px;
+              border: none;
+              border-radius: 3px;
+              color: #fff;
+              /* background-color: rgb(39, 212, 179); */
+              outline: none;
+              font-size: 0.85em;
+              padding: 8px 18px 6px 18px;
+              margin-top: 40px;
+              opacity: 1;
+              cursor: pointer;
+            }
+            .buttons #new-quote{
+              float: right;
+            }
+      .footer {
+        width: 450px;
+        text-align: center;
+        display: block;
+        margin: 15px auto 30px auto;
+        font-size: 1em;
+        color: #fff;
+      }
+        .footer a{
+          color: #fff;
+          text-decoration: none;
+        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrap">
+      <div id="quote-box">
+        <div id="quote-text">
+          <i class="fa fa-quote-left"> </i>
+          <span id="text">If you want to lift yourself up, lift up someone else.</span>
+        </div>
+        <div id="quote-author">-
+          <span id="author">Booker T. Washington</span>
+        </div>
+        <div class="buttons">
+          <a class="button" href="https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=%22If%20you%20want%20to%20lift%20yourself%20up%2C%20lift%20up%20someone%20else.%22%20Booker%20T.%20Washington" id="tweet-quote">
+            <i class="fa fa-twitter"></i>
+          </a>
+          <a class="button" id="tumblr-quote" title="Post this quote on tumblr!" target="_blank" href="https://www.tumblr.com/widgets/share/tool?posttype=quote&amp;tags=quotes,freecodecamp&amp;caption=Booker%20T.%20Washington&amp;content=If%20you%20want%20to%20lift%20yourself%20up%2C%20lift%20up%20someone%20else.&amp;canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&amp;shareSource=tumblr_share_button">
+            <i class="fa fa-tumblr"></i>
+          </a>
+          <button class="button" id="new-quote">New quote</button>
+        </div>
+      </div>
+      <div class="footer">by <a href="https://codepen.io/hezag/">hezag</a></div>
+    </div> 
+  </div>
+  <script>
+    var quotes = [{quote:'Every strike brings me closer to the next home run.',author:'Babe Ruth'},
+    {quote:'The two most important days in your life are the day you are born and the day you find out why.',author:'Mark Twain'},{
+      quote:'Eighty percent of success is showing up.',author:'Woody Allen'
+    },{
+      quote:'Eighty percent of success is showing up.',author:'Woody Allen'
+    },{
+       quote:'Everything you’ve ever wanted is on the other side of fear.',author:'George Addair'
+    },{
+      quote:'Everything you’ve ever wanted is on the other side of fear.',author:'George Addair'
+    },{
+      quote:'Limitations live only in our minds. But if we use our imaginations, our possibilities become limitless.',author:'Jamie Paolinetti'
+    },{
+      quote:'You can’t use up creativity. The more you use, the more you have.',author:'Maya Angelou'
+    },{
+      quote:'Happiness is not something readymade. It comes from your own actions.',author:'Dalai Lama'
+    },{
+      quote:'It does not matter how slowly you go as long as you do not stop.',author:'Confucius'
+    },{
+      quote:'First, have a definite, clear practical ideal; a goal, an objective. Second, have the necessary means to achieve your ends; wisdom, money, materials, and methods. Third, adjust all your means to that end.',author:'Aristotle'
+    },{
+      quote:'Either you run the day, or the day runs you.',author:'Jim Rohn'
+    },{
+      quote:'Challenges are what make life interesting and overcoming them is what makes life meaningful.',author:'Joshua J. Marine'
+    },{
+      quote:'Either you run the day, or the day runs you.',author:'Jim Rohn'
+    },{
+      quote:'A person who never made a mistake never tried anything new.',author:'Albert Einstein'
+    },{
+      quote:'The battles that count aren’t the ones for gold medals. The struggles within yourself–the invisible battles inside all of us–that’s where it’s at.',
+      author:'Jesse Owens'
+    },{
+      quote:'Ask and it will be given to you; search, and you will find; knock and the door will be opened for you.',
+      author:'Jesus'
+    },{
+      quote:'Life is not measured by the number of breaths we take, but by the moments that take our breath away.',
+      author:'Maya Angelou'
+    },{
+      quote:'Challenges are what make life interesting and overcoming them is what makes life meaningful.',
+      author:'Joshua J. Marine'
+    },{
+      quote:'An unexamined life is not worth living.',author:'Socrates'
+    }]
+    $(document).ready(function(){
+      var red = Math.floor(Math.random()*255);
+      var green = Math.floor(Math.random()*255);
+      var blue = Math.floor(Math.random()*255);
+      var index = Math.floor(Math.random()*quotes.length);
+      $('.container,.button').css("background-color","rgb("+red+","+green+","+blue+")");
+      $('#quote-text,#author').css("color","rgb("+red+","+green+","+blue+")");
+      $('#text').text(quotes[index].quote);
+      $('#author').text(quotes[index].author);
+      $("#new-quote").click(function(){
+        red = Math.floor(Math.random()*255);
+        green = Math.floor(Math.random()*255);
+        blue = Math.floor(Math.random()*255);
+        $.ajax({url:'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json',success:function(result){
+          var data = JSON.parse(result);
+          var quoteIndex = Math.floor(Math.random()*data.quotes.length);
+          var quoteData = data.quotes[quoteIndex];
+          console.log(quoteData);
+          $('.container,.button').css("background-color","rgb("+red+","+green+","+blue+")");
+          $('#quote-text,#author').css("color","rgb("+red+","+green+","+blue+")");
+          $('#text').text(quoteData.quote);
+          $('#author').text(quoteData.author);
+          $('#tweet-quote').attr("href","https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="+encodeURIComponent('"'+quoteData.quote+'"'+quoteData.author));
+        }});
+      });
+    });
+  </script>
+</body>
+</html>
